@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'de.eternalwings.bukkit'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compileOnly "org.bukkit:bukkit:1.12.2-R0.1-SNAPSHOT"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.3"
+}
+
+publishing {
+    publications {
+        mavenProject(MavenPublication) {
+            from components.java
+
+            groupId project.group
+            artifactId project.name
+            version project.version
+        }
+    }
+}
